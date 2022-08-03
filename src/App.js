@@ -1,25 +1,53 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import axios from "axios";
+import React, { Component } from "react";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component {
+  state = { location: [] };
+  componentDidMount() {
+    var currentTime = new Date();
+    var currentTimeString =
+      currentTime.getFullYear() +
+      "-" +
+      this.minimumDigits(currentTime.getMonth() + 1) +
+      "-" +
+      this.minimumDigits(currentTime.getDate()) +
+      "T" +
+      this.minimumDigits(currentTime.getHours()) +
+      ":" +
+      this.minimumDigits(currentTime.getMinutes()) +
+      ":" +
+      this.minimumDigits(currentTime.getSeconds());
+    axios
+      .get(
+        `https://api.data.gov.sg/v1/environment/2-hour-weather-forecast?date_time=${currentTimeString}`
+      )
+      .then((res) => {
+        this.setState({ location: res.data.items[0].forecasts });
+      })
+      .catch((error) => console.log(error));
+  }
+  renderList = () => {
+    return this.state.location.map((place, index) => {
+      return (
+        <div key={index}>
+          {place.area} {place.forecast}
+        </div>
+      );
+    });
+  };
+  minimumDigits = (number) => {
+    return number.toLocaleString(undefined, {
+      minimumIntegerDigits: 2,
+    });
+  };
+  render() {
+    return (
+      <div className="App">
+        <header className="App-header">{this.renderList()}</header>
+      </div>
+    );
+  }
 }
 
 export default App;
