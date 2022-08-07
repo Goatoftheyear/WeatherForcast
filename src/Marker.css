@@ -1,0 +1,14 @@
+.marker {
+  color: black;
+}
+.selectedMarker {
+  color: red;
+}
+
+.unselectedMarker {
+  opacity: 0.5;
+  color: #bbb;
+}
+.popover {
+  margin: 10px;
+}

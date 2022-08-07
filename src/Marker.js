@@ -1,23 +1,18 @@
 import { Popover } from "@mui/material";
 import { useState } from "react";
-const Marker = ({ x, y, name, forecast, selected }) => {
-  var dot = "dot";
+import RoomIcon from "@mui/icons-material/Room";
+import "./Marker.css";
 
+const Marker = ({ x, y, name, forecast, selected }) => {
+  var dot;
   if (selected && selected.includes(name)) {
-    dot = "dot2";
+    dot = "selectedMarker";
   } else if (selected && !selected.includes(name)) {
-    dot = "hidden";
+    dot = "unselectedMarker";
   }
   if (selected && !selected.length) {
-    dot = "dot";
+    dot = "marker";
   }
-  //   useEffect(() => {
-  //     if (name.includes(selected) && selected) {
-  //       setDot("dot2");
-  //     } else {
-  //       setDot("dot");
-  //     }
-  //   }, [change]);
   const [anchorEl, setAnchorEl] = useState(null);
   const onTouch = (e) => {
     console.log("ea sports");
@@ -38,7 +33,9 @@ const Marker = ({ x, y, name, forecast, selected }) => {
           marginTop: `${y}px`,
           position: "absolute",
         }}
-      ></span>
+      >
+        <RoomIcon fontSize="large" />
+      </span>
       <Popover
         sx={{
           pointerEvents: "none",
@@ -48,17 +45,16 @@ const Marker = ({ x, y, name, forecast, selected }) => {
         anchorEl={anchorEl}
         anchorOrigin={{
           vertical: "top",
-          horizontal: "left",
+          horizontal: "center",
         }}
         transformOrigin={{
-          vertical: "center",
-          horizontal: "left",
+          vertical: "bottom",
+          horizontal: "center",
         }}
       >
         <div className="popover">
-          Name: {name}
-          <br />
-          Forecast: {forecast}
+          <div>Name: {name}</div>
+          <div> Forecast: {forecast}</div>
         </div>
       </Popover>
     </div>
