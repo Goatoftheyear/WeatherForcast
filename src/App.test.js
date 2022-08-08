@@ -4,6 +4,7 @@ import "@testing-library/jest-dom";
 import App from "./App";
 import Marker from "./Marker";
 import userEvent from "@testing-library/user-event";
+import axios from "axios";
 
 test("renders if render things are on the screen", () => {
   const screen = render(<App />);
@@ -20,4 +21,35 @@ test("renders if render things are on the screen", () => {
     })
   );
   expect(screen.getAllByPlaceholderText("Select a location"));
+});
+
+test("renders if render things are on the screen", async () => {
+  const minimumDigits = (number) => {
+    return number.toLocaleString(undefined, {
+      minimumIntegerDigits: 2,
+    });
+  };
+  var data;
+  var currentTime = new Date();
+  var currentTimeString =
+    currentTime.getFullYear() +
+    "-" +
+    minimumDigits(currentTime.getMonth() + 1) +
+    "-" +
+    minimumDigits(currentTime.getDate()) +
+    "T" +
+    minimumDigits(currentTime.getHours()) +
+    ":" +
+    minimumDigits(currentTime.getMinutes()) +
+    ":" +
+    minimumDigits(currentTime.getSeconds());
+  await axios
+    .get(
+      `https://api.data.gov.sg/v1/environment/2-hour-weather-forecast?date_time=${currentTimeString}`
+    )
+    .then((res) => {
+      data = res.data;
+    })
+    .catch((error) => console.log(error));
+  expect(data.api_info.status).toEqual("healthy");
 });
