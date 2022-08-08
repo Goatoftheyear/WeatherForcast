@@ -1,10 +1,14 @@
-# Before you start
+# Weather Forecast
 
-## Install these packages
+## Before you start
 
-npm install @material-ui/core --legacy-peer-deps
-npm install jest-watch-typeahead@0.6.5
+git clone https://github.com/Goatoftheyear/WeatherForcast.git
+run: npm install
 
-# To Start
+## To Start
 
-npm start
+run: npm start
+
+## To Test
+
+run: npm test and press a
