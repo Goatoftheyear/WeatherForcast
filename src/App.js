@@ -12,6 +12,7 @@ class App extends Component {
     selected: "",
   };
   componentDidMount() {
+    // format the time to fit the api
     var currentTime = new Date();
     var currentTimeString =
       currentTime.getFullYear() +
@@ -40,15 +41,10 @@ class App extends Component {
       })
       .catch((error) => console.log(error));
   }
-  onTouch = (e) => {
-    this.setState({ anchorEl: e.currentTarget });
-  };
-  handleClose = () => {
-    this.setState({ anchorEl: null });
-  };
+  //numbers are based on estimation
   renderList = () => {
     const middle = [103.8198, 1.3521];
-    const middleCoord = [-80, 245];
+    const middleCoord = [-80, 235];
     return this.state.coordinates.map((place, index) => {
       var differenceX = middle[0] - place.label_location.longitude;
       var differenceY = middle[1] - place.label_location.latitude;

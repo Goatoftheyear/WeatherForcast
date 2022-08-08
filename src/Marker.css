@@ -1,14 +1,28 @@
 .marker {
+  z-index: 1;
   color: black;
 }
 .selectedMarker {
+  z-index: 1;
   color: red;
 }
 
 .unselectedMarker {
+  z-index: 1;
   opacity: 0.5;
   color: #bbb;
 }
-.popover {
+
+.white {
+  border-style: solid;
+  z-index: 2;
+  border-radius: 4px;
+  background-color: white;
+}
+.box {
+  text-align: center;
   margin: 10px;
+}
+.name {
+  font-weight: bold;
 }

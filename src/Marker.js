@@ -1,8 +1,7 @@
-import { Popover } from "@mui/material";
+import { Popper } from "@mui/material";
 import { useState } from "react";
 import RoomIcon from "@mui/icons-material/Room";
 import "./Marker.css";
-
 const Marker = ({ x, y, name, forecast, selected }) => {
   var dot;
   if (selected && selected.includes(name)) {
@@ -10,15 +9,14 @@ const Marker = ({ x, y, name, forecast, selected }) => {
   } else if (selected && !selected.includes(name)) {
     dot = "unselectedMarker";
   }
-  if (selected && !selected.length) {
+  if (!selected || !selected.length) {
     dot = "marker";
   }
   const [anchorEl, setAnchorEl] = useState(null);
   const onTouch = (e) => {
-    console.log("ea sports");
     setAnchorEl(e.currentTarget);
   };
-  const handleClose = () => {
+  const handleClose = (e) => {
     setAnchorEl(null);
   };
   return (
@@ -36,27 +34,19 @@ const Marker = ({ x, y, name, forecast, selected }) => {
       >
         <RoomIcon fontSize="large" />
       </span>
-      <Popover
-        sx={{
-          pointerEvents: "none",
-        }}
+      <Popper
+        placement="top"
+        className="white"
         open={Boolean(anchorEl)}
-        onClose={handleClose}
         anchorEl={anchorEl}
-        anchorOrigin={{
-          vertical: "top",
-          horizontal: "center",
-        }}
-        transformOrigin={{
-          vertical: "bottom",
-          horizontal: "center",
-        }}
       >
-        <div className="popover">
-          <div>Name: {name}</div>
-          <div> Forecast: {forecast}</div>
+        <div className="box">
+          <div>
+            <p className="name">{name}</p>
+            Forecast: {forecast}
+          </div>
         </div>
-      </Popover>
+      </Popper>
     </div>
   );
 };
