@@ -2,7 +2,8 @@
 
 ## Before you start
 
-git clone https://github.com/Goatoftheyear/WeatherForcast.git
+git clone https://github.com/Goatoftheyear/WeatherForcast.git  
+cd WeatherForecast  
 run: npm install
 
 ## To Start
