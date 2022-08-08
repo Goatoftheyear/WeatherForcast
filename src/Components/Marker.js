@@ -1,7 +1,8 @@
 import { Popper } from "@mui/material";
 import { useState } from "react";
 import RoomIcon from "@mui/icons-material/Room";
-import "./Marker.css";
+import "../styles/Marker.css";
+
 const Marker = ({ x, y, name, forecast, selected }) => {
   var dot;
   if (selected && selected.includes(name)) {

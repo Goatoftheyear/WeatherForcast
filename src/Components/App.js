@@ -1,7 +1,7 @@
-import "./App.css";
+import "../styles/App.css";
 import axios from "axios";
 import React, { Component } from "react";
-import sgMap from "./assets/SGMAP.png";
+import sgMap from "../assets/SGMAP.png";
 import { Autocomplete, TextField } from "@mui/material";
 import Marker from "./Marker";
 class App extends Component {

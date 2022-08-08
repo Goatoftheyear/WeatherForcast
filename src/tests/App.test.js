@@ -1,9 +1,7 @@
 import React from "react";
 import { render, screen } from "@testing-library/react";
 import "@testing-library/jest-dom";
-import App from "./App";
-import Marker from "./Marker";
-import userEvent from "@testing-library/user-event";
+import App from "../Components/App";
 import axios from "axios";
 
 test("renders if render things are on the screen", () => {
