@@ -1,0 +1,11 @@
+.hidden {
+  display: none;
+  z-index: 10;
+}
+
+.visible {
+  background-color: white;
+  display: flex;
+  top: 45px;
+  z-index: 10;
+}
